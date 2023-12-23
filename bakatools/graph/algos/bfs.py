@@ -1,9 +1,9 @@
 from queue import SimpleQueue
 from typing import Generator, TypeVar
 
-from bakatools.graph.dag import DirectedGraph
+from ..dag import DirectedGraph
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 def bfs_iterate(graph: DirectedGraph, start: T) -> Generator[(int, T), None, None]:

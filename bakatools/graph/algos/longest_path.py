@@ -1,8 +1,8 @@
-from typing import TypeVar, Optional
+from typing import Optional, TypeVar
 
-from bakatools.graph.dag import DirectedGraph
+from ..dag import DirectedGraph
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 def longest_path(start: T, end: T, graph: DirectedGraph[T]) -> int:

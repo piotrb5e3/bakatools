@@ -1,7 +1,7 @@
 from collections import defaultdict
 from typing import TypeVar
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class DirectedGraph(dict[T, dict[T, int]]):
