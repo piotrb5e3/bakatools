@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional, Generator
+from typing import Generator, Optional
 
 
 @dataclass
@@ -20,7 +20,9 @@ class Dir:
         return self.path[-1]
 
     def size(self) -> int:
-        return sum(f.size for f in self.files.values()) + sum(d.size() for d in self.dirs.values())
+        return sum(f.size for f in self.files.values()) + sum(
+            d.size() for d in self.dirs.values()
+        )
 
     def iter_dirs(self) -> Generator["Dir", None, None]:
         yield self

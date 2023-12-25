@@ -1,10 +1,12 @@
 from queue import SimpleQueue
-from typing import Optional, TypeVar, Iterable, Counter
+from typing import Counter, Iterable, Optional, TypeVar
 
 T = TypeVar("T")
 
 
-def all_different_values_start(sequence: Iterable[T], pattern_length: int) -> Optional[int]:
+def all_different_values_start(
+    sequence: Iterable[T], pattern_length: int
+) -> Optional[int]:
     window_counter = Counter[T]()
     result = 0
 

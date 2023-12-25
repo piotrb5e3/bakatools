@@ -28,7 +28,7 @@ class Grid2D(dict[Vector2D, T]):
         return result
 
     def to_graph(
-            self, can_go_from_to: Callable[[T, Vector2D, T], bool]
+        self, can_go_from_to: Callable[[T, Vector2D, T], bool]
     ) -> DirectedGraph[Vector2D]:
         result: dict[Vector2D, dict[Vector2D, int]] = defaultdict(lambda: dict())
 
@@ -36,7 +36,7 @@ class Grid2D(dict[Vector2D, T]):
             for direction in direction_vectors:
                 new_pos = start_pos.add(direction)
                 if new_pos in self and can_go_from_to(
-                        self[start_pos], direction, self[new_pos]
+                    self[start_pos], direction, self[new_pos]
                 ):
                     result[start_pos][new_pos] = 1
 
