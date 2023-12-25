@@ -21,5 +21,9 @@ class Vector2D(NamedTuple):
     def rotate_counterclockwise(self) -> "Vector2D":
         return Vector2D(self.y * -1, self.x)
 
+    def adjacent(self, other: "Vector2D") -> bool:
+        """True if the other vector is on a neighboring (also diagonally) square. Includes being at the same square."""
+        return abs(self.x - other.x) <= 1 and abs(self.y - other.y) <= 1
+
 
 V2D = Vector2D
