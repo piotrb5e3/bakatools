@@ -1,14 +1,18 @@
-from typing import NamedTuple
+from decimal import Decimal
+from fractions import Fraction
+from typing import NamedTuple, TypeVar
+
+T = TypeVar("T", int, float, Decimal, Fraction)
 
 
 class Vector2D(NamedTuple):
-    x: int
-    y: int
+    x: T
+    y: T
 
     def add(self, other: "Vector2D") -> "Vector2D":
         return Vector2D(self.x + other.x, self.y + other.y)
 
-    def mul(self, by: int) -> "Vector2D":
+    def mul(self, by: T) -> "Vector2D":
         return Vector2D(self.x * by, self.y * by)
 
     def rotate_clockwise(self) -> "Vector2D":
