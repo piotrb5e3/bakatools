@@ -20,3 +20,6 @@ class Vector2D(NamedTuple):
 
     def rotate_counterclockwise(self) -> "Vector2D":
         return Vector2D(self.y * -1, self.x)
+
+
+V2D = Vector2D
