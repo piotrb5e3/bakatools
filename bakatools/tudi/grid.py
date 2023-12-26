@@ -1,4 +1,3 @@
-from collections import defaultdict
 from typing import Callable, TypeVar
 
 from ..graph.dag import DirectedGraph
@@ -30,7 +29,7 @@ class Grid2D(dict[Vector2D, T]):
     def to_graph(
         self, can_go_from_to: Callable[[T, Vector2D, T], bool]
     ) -> DirectedGraph[Vector2D]:
-        result: dict[Vector2D, dict[Vector2D, int]] = defaultdict(lambda: dict())
+        result: dict[Vector2D, dict[Vector2D, int]] = {k: dict() for k in self.keys()}
 
         for start_pos, start_v in self.items():
             for direction in direction_vectors:
