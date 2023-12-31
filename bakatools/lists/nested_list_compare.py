@@ -11,11 +11,14 @@ def nested_list_compare(a: int | list, b: int | list) -> int:
     then retry the comparison.
     """
     match a, b:
-        case int(), int(): return (a > b) - (a < b)
+        case int(), int():
+            return (a > b) - (a < b)
         case list(), list():
             for subcomparison_result in map(nested_list_compare, a, b):
                 if subcomparison_result != 0:
                     return subcomparison_result
             return nested_list_compare(len(a), len(b))
-        case int(), list(): return nested_list_compare([a], b)
-        case list(), int(): return nested_list_compare(a, [b])
+        case int(), list():
+            return nested_list_compare([a], b)
+        case list(), int():
+            return nested_list_compare(a, [b])

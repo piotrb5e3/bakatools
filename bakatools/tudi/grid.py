@@ -1,8 +1,8 @@
 from typing import Callable, TypeVar
 
-from .polygon import PolygonalChain
 from ..graph.dag import DirectedGraph
 from .directions import direction_vectors
+from .polygon import PolygonalChain
 from .vector import Vector2D
 
 T = TypeVar("T")
@@ -41,7 +41,9 @@ class Grid2D(dict[Vector2D, T]):
         return result
 
     @staticmethod
-    def from_bounds(min_x: int, max_x: int, min_y: int, max_y: int, fill: T) -> "Grid2D[T]":
+    def from_bounds(
+        min_x: int, max_x: int, min_y: int, max_y: int, fill: T
+    ) -> "Grid2D[T]":
         assert max_x >= min_x
         assert max_y >= min_y
         result = Grid2D[T]()
@@ -53,7 +55,7 @@ class Grid2D(dict[Vector2D, T]):
         return result
 
     def to_graph(
-            self, can_go_from_to: Callable[[T, Vector2D, T], bool]
+        self, can_go_from_to: Callable[[T, Vector2D, T], bool]
     ) -> DirectedGraph[Vector2D]:
         result: dict[Vector2D, dict[Vector2D, int]] = {k: dict() for k in self.keys()}
 
@@ -61,7 +63,7 @@ class Grid2D(dict[Vector2D, T]):
             for direction in direction_vectors:
                 new_pos = start_pos.add(direction)
                 if new_pos in self and can_go_from_to(
-                        self[start_pos], direction, self[new_pos]
+                    self[start_pos], direction, self[new_pos]
                 ):
                     result[start_pos][new_pos] = 1
 
@@ -72,12 +74,9 @@ class Grid2D(dict[Vector2D, T]):
         max_x = max(p.x for p in self.keys())
         min_y = min(p.y for p in self.keys())
         max_y = max(p.y for p in self.keys())
-        return (
-            f"Grid2D(x: [{min_x},{max_x}]; y: [{min_y},{max_y}]]\n" +
-            "\n".join(
-                "".join(str(self[Vector2D(x, y)])
-                        for x in range(min_x, max_x + 1)
-                        ) for y in range(min_y, max_y + 1))
+        return f"Grid2D(x: [{min_x},{max_x}]; y: [{min_y},{max_y}]]\n" + "\n".join(
+            "".join(str(self[Vector2D(x, y)]) for x in range(min_x, max_x + 1))
+            for y in range(min_y, max_y + 1)
         )
 
 

@@ -34,6 +34,7 @@ class Add(Expr):
     def eval(self, variables: dict[str, NUM]) -> NUM:
         return self.lhs.eval(variables) + self.rhs.eval(variables)
 
+
 @dataclass
 class Sub(Expr):
     lhs: Expr
@@ -65,7 +66,7 @@ def parse_expression(expr_s: str) -> Expr:
     if "+" in expr_s or "-" in expr_s:
         split_pos = max(expr_s.find("+"), expr_s.find("-"))
         lhs = parse_expression(expr_s[:split_pos].strip())
-        rhs = parse_expression(expr_s[split_pos + 1:].strip())
+        rhs = parse_expression(expr_s[split_pos + 1 :].strip())
         if expr_s[split_pos] == "+":
             return Add(lhs, rhs)
         else:
@@ -74,7 +75,7 @@ def parse_expression(expr_s: str) -> Expr:
     if "*" in expr_s or "/" in expr_s:
         split_pos = max(expr_s.find("*"), expr_s.find("/"))
         lhs = parse_expression(expr_s[:split_pos].strip())
-        rhs = parse_expression(expr_s[split_pos + 1:].strip())
+        rhs = parse_expression(expr_s[split_pos + 1 :].strip())
         if expr_s[split_pos] == "*":
             return Mul(lhs, rhs)
         else:

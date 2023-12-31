@@ -5,7 +5,6 @@ from bakatools.tudi.vector import Vector2D
 
 
 class PolygonalChain(list[Vector2D]):
-
     @property
     def segments(self) -> Iterable[Line2D]:
         for p1, p2 in zip(self[:-1], self[1:]):

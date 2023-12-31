@@ -26,7 +26,9 @@ def shortest_paths(graph: DirectedGraph[T], start: T) -> dict[T, int]:
 
 def floyd_warshall(graph: DirectedGraph[T]) -> dict[T, dict[T, int | None]]:
     """Implements the floyd-warshall algorithm for finding the shortest paths in a graph between any pair of nodes"""
-    result: dict[T, dict[T, int | None]] = defaultdict(lambda: defaultdict(lambda: None))
+    result: dict[T, dict[T, int | None]] = defaultdict(
+        lambda: defaultdict(lambda: None)
+    )
     for node, node_values in graph.items():
         result[node][node] = 0
         for dest_node, weight in node_values.items():
@@ -42,5 +44,7 @@ def floyd_warshall(graph: DirectedGraph[T]) -> dict[T, dict[T, int | None]]:
                     if old is None:
                         result[start_node][end_node] = p1 + p2
                     else:
-                        result[start_node][end_node] = min(result[start_node][end_node], p1 + p2)
+                        result[start_node][end_node] = min(
+                            result[start_node][end_node], p1 + p2
+                        )
     return result

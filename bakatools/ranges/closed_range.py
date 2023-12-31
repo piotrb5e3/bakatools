@@ -3,6 +3,7 @@ from typing import NamedTuple
 
 class ClosedRange(NamedTuple):
     """Represents a range that contains its ends"""
+
     start: int
     end: int
 
@@ -12,8 +13,8 @@ class ClosedRange(NamedTuple):
 
     def intersects(self, other: "ClosedRange") -> bool:
         return (
-                self.start <= other.start <= self.end or
-                self.start <= other.end <= self.end or
-                other.start <= self.start <= other.end or
-                other.start <= self.end <= other.end
+            self.start <= other.start <= self.end
+            or self.start <= other.end <= self.end
+            or other.start <= self.start <= other.end
+            or other.start <= self.end <= other.end
         )
