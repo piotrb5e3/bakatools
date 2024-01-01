@@ -25,3 +25,6 @@ class Vector3D(NamedTuple):
         ), f"There must be exactly 3 segments. Found: {len(segments)}"
         xs, ys, zs = segments
         return Vector3D(int(xs.strip()), int(ys.strip()), int(zs.strip()))
+
+
+V3D = Vector3D
